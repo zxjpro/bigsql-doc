@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Bigsql中文文档 | 时间分片</title>
+    <meta name="description" content="一个和语言无关的分布式数据库中间件">
+    
+    
+    <link rel="preload" href="/assets/css/23.styles.5037532c.css" as="style"><link rel="preload" href="/assets/js/app.84167483.js" as="script"><link rel="preload" href="/assets/js/3.d5999058.js" as="script"><link rel="prefetch" href="/assets/js/12.7801bbb2.js"><link rel="prefetch" href="/assets/js/1.98126f60.js"><link rel="prefetch" href="/assets/js/2.d5fa26c4.js"><link rel="prefetch" href="/assets/js/4.98d27f86.js"><link rel="prefetch" href="/assets/js/5.ea5dab47.js"><link rel="prefetch" href="/assets/js/6.489c1038.js"><link rel="prefetch" href="/assets/js/7.82b268c7.js"><link rel="prefetch" href="/assets/js/8.92d81fef.js"><link rel="prefetch" href="/assets/js/9.d9d36508.js"><link rel="prefetch" href="/assets/js/10.faecb4db.js"><link rel="prefetch" href="/assets/js/11.20f0e3a1.js"><link rel="prefetch" href="/assets/js/0.53bbfd97.js"><link rel="prefetch" href="/assets/js/13.37c1602e.js"><link rel="prefetch" href="/assets/js/14.d41133a1.js"><link rel="prefetch" href="/assets/js/15.9502ddac.js"><link rel="prefetch" href="/assets/js/16.36c7316e.js"><link rel="prefetch" href="/assets/js/17.0a1ffff9.js"><link rel="prefetch" href="/assets/js/18.b6ac11d0.js"><link rel="prefetch" href="/assets/js/19.f049c57d.js"><link rel="prefetch" href="/assets/js/20.e9671a69.js"><link rel="prefetch" href="/assets/js/21.850692c3.js"><link rel="prefetch" href="/assets/js/22.f9b89311.js">
+    <link rel="stylesheet" href="/assets/css/23.styles.5037532c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/" class="home-link router-link-active"><!----><span class="site-name">
+      Bigsql中文文档
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">主页</a></div><div class="nav-item"><a href="/guide/" class="nav-link router-link-active">使用文档</a></div><div class="nav-item"><a href="/dev/" class="nav-link">开发文档</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Languages</span><span class="arrow right"></span></a><ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----><a href="/Languages/chinese.html" class="nav-link">中文</a></li><li class="dropdown-item"><!----><a href="/Languages/english.html" class="nav-link">englih</a></li></ul></div></div><a href="http://www.baidu.com" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Source
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">主页</a></div><div class="nav-item"><a href="/guide/" class="nav-link router-link-active">使用文档</a></div><div class="nav-item"><a href="/dev/" class="nav-link">开发文档</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Languages</span><span class="arrow right"></span></a><ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----><a href="/Languages/chinese.html" class="nav-link">中文</a></li><li class="dropdown-item"><!----><a href="/Languages/english.html" class="nav-link">englih</a></li></ul></div></div><a href="http://www.baidu.com" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Source
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav><ul class="sidebar-links"><li><a href="/guide/" class="sidebar-link">文档</a></li><li><a href="/guide/noun_introduce.html" class="sidebar-link">名词介绍</a></li><li><a href="/guide/tips.html" class="sidebar-link">小提示</a></li><li><a href="/guide/config_datasource.html" class="sidebar-link">数据源配置</a></li><li><a href="/guide/create_logic_database.html" class="sidebar-link">建立逻辑数据库</a></li><li><a href="/guide/create_logic_table.html" class="sidebar-link">建立逻辑表</a></li><li><a href="/guide/hash_sharding.html" class="sidebar-link">哈希切片</a></li><li><a href="/guide/time_sharding.html" class="active sidebar-link">时间分片</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/time_sharding.html#小提示" class="sidebar-link">小提示</a></li><li class="sidebar-sub-header"><a href="/guide/time_sharding.html#配置内容" class="sidebar-link">配置内容</a></li><li class="sidebar-sub-header"><a href="/guide/time_sharding.html#配置说明" class="sidebar-link">配置说明</a></li><li class="sidebar-sub-header"><a href="/guide/time_sharding.html#分片表的创建" class="sidebar-link">分片表的创建</a></li></ul></li><li><a href="/guide/master_slave.html" class="sidebar-link">读写分离</a></li><li><a href="/guide/full_scan_table.html" class="sidebar-link">引发全表扫描</a></li><li><a href="/guide/transaction.html" class="sidebar-link">事务</a></li><li><a href="/guide/increment_key.html" class="sidebar-link">分布式主键</a></li><li><a href="/guide/plugin.html" class="sidebar-link">插件</a></li><li><a href="/guide/keyword.html" class="sidebar-link">关键字</a></li></ul></div><div class="page"><div class="content"><h1 id="时间分片"><a href="#时间分片" aria-hidden="true" class="header-anchor">#</a> 时间分片</h1><h2 id="小提示"><a href="#小提示" aria-hidden="true" class="header-anchor">#</a> 小提示</h2><div class="danger custom-block"><p class="custom-block-title">时间分片不支持全表扫描</p><p>出于性能以及安全方面的考虑，bigsql并不打算支持时间分片的全表扫描。</p><p>我们可以试想一下，一个已经运行了一两年的逻辑表，到底会存在多少数据，如果我们写出<code>SELECT * FROM table_name</code>这样的SQL，
+那么对于bigsql来说，将是难以想象的压力。</p></div><div class="warning custom-block"><p class="custom-block-title">分片时间必须指定区域</p><p>bigsql要求查询条件中，时间字段，必须给定一个区域，比如<code>BETWEEN AND</code>，或者<code>time &gt; [startTime] and time &lt; [endTime]</code>，或者<code>time = [timeValue]</code>。</p><p>其实这样做的原因可以理解，如果我们写了这样一个条件<code>time &gt; [timeValue]</code>，那么随着时间的增长，分片表会越来越多，就意味着定位到的分片表会越来越多，查询的复杂度也就会越来越多，而对于一个透明的中间件来说，这是开发人员很容易忽略掉的。</p></div><div class="tip custom-block"><p class="custom-block-title">提示</p><p>分片的时间参数，不能小于定义的最小分片值。比如我们定义的最小边界为2018年，那么我们就不能插入2018年以前的数据。</p><p>两个区间值，不能相等，比如<code>time &gt;= '2018-01-01' and time &lt;= '2018-01-01'</code>，如果相等，则直接使用<code>time = '2018-01-01'</code></p><p>查询条件给定的区域中，最大不能超过12个分片表，也就是说，如果你是按月分表，那么你的查询条件中，最多查询12个月的数据，也就是一年。</p></div><h2 id="配置内容"><a href="#配置内容" aria-hidden="true" class="header-anchor">#</a> 配置内容</h2><p>我们进入bigsql/conf/schema/中，创建一个数据库文件夹，然后创建一个逻辑表的配置，配置信息如下，其实我们也可以参考
+bigsql/template/time_sharding.xml文件</p><div class="language-xml extra-class"><pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>rule</span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!-- the strategy name --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strategy</span><span class="token punctuation">&gt;</span></span>StandardTimeShardingStrategy<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strategy</span><span class="token punctuation">&gt;</span></span> <span class="token comment">&lt;!-- standard time sharding --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">&gt;</span></span>
+
+
+        <span class="token comment">&lt;!-- sharding by time format --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">&gt;</span></span>shardingFormat<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>key</span><span class="token punctuation">&gt;</span></span>
+
+            <span class="token comment">&lt;!-- YEAR,MONTH,DAY   --&gt;</span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">&gt;</span></span>MONTH<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">&gt;</span></span>
+
+
+        <span class="token comment">&lt;!-- config the sharding column name --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">&gt;</span></span>shardingColumn<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>key</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">&gt;</span></span>create_time<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">&gt;</span></span>
+
+
+
+        <span class="token comment">&lt;!-- config the time range in dataSource ...start  --&gt;</span>
+
+
+        <span class="token comment">&lt;!--[yyyyMMdd-yyyyMMdd]=dataSourceName --&gt;</span>
+        <span class="token comment">&lt;!-- start &lt;= shardingTime &lt; end --&gt;</span>
+        <span class="token comment">&lt;!-- the date range,will be save dataSource1 --&gt;</span>
+        <span class="token comment">&lt;!-- we can config multipart range by ; --&gt;</span>
+        <span class="token comment">&lt;!-- the multipart range is must order by date asc , bigsql get the first match dataSource--&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">&gt;</span></span>range<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>key</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">&gt;</span></span> [20170101-20180101]=dataSource1   ;   [20180101-20180501]=dataSource2   ;   [20180301-?]=dataSource3 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">&gt;</span></span>
+
+
+        <span class="token comment">&lt;!--[yyyyMMdd-?]=dataSourceName --&gt;</span>
+        <span class="token comment">&lt;!-- ? is the future time  --&gt;</span>
+
+
+        <span class="token comment">&lt;!-- config the time range in dataSource ...end  --&gt;</span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>properties</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>rule</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h2 id="配置说明"><a href="#配置说明" aria-hidden="true" class="header-anchor">#</a> 配置说明</h2><p>同样的，配置文件，声明了分片策略名称，后面就是具体的key-value信息</p><div class="language-xml extra-class"><pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>rule</span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!-- 策略名称，这个策略名称代表着标准时间分片 --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strategy</span><span class="token punctuation">&gt;</span></span>StandardTimeShardingStrategy<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strategy</span><span class="token punctuation">&gt;</span></span> <span class="token comment">&lt;!-- 标准时间分片 --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">&gt;</span></span>
+
+
+        <span class="token comment">&lt;!-- 按时间分片的颗粒度 --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">&gt;</span></span>shardingFormat<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>key</span><span class="token punctuation">&gt;</span></span>
+
+            <span class="token comment">&lt;!-- 这里有三种格式，分别是年，月，日 ，对应着关键字 YEAR,MONTH,DAY   --&gt;</span>
+			<span class="token comment">&lt;!-- 如下就是按月分片 --&gt;</span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">&gt;</span></span>MONTH<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">&gt;</span></span>
+
+
+        <span class="token comment">&lt;!-- 设置分片键，这里是按照create_time来分片 --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">&gt;</span></span>shardingColumn<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>key</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">&gt;</span></span>create_time<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">&gt;</span></span>
+
+
+
+        <span class="token comment">&lt;!-- 配置时间分区区域...开始  --&gt;</span>
+
+
+        <span class="token comment">&lt;!--[yyyyMMdd-yyyyMMdd]=dataSourceName --&gt;</span>
+
+        <span class="token comment">&lt;!-- 分片开始时间 &lt;= 传入的分片时间 &lt; 分片的结束时间 --&gt;</span>
+        <span class="token comment">&lt;!-- 等号后面的是该分片区域的数据源名称 --&gt;</span>
+        <span class="token comment">&lt;!-- 我们可以配置多个分片区域，以 ; 隔开 --&gt;</span>
+        <span class="token comment">&lt;!-- 多个分片区域，必须按时间的正序排序 , 因为bigsql会获取最先定位到的range--&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">&gt;</span></span>range<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>key</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">&gt;</span></span> [20170101-20180101]=dataSourceName1   ;   [20180101-?]=dataSourceName2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">&gt;</span></span>
+
+
+        <span class="token comment">&lt;!--[yyyyMMdd-?]=dataSourceName --&gt;</span>
+        <span class="token comment">&lt;!-- 问号代表着往后的所有时间，如果哪天数据库的数据量过多，到了需要增加数据库的时间，就把问号改为具体的时间，然后再增加一个区域  --&gt;</span>
+
+
+        <span class="token comment">&lt;!-- 配置时间分片区域 ...结束  --&gt;</span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>properties</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>rule</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>我们重点看一下range的配置。</p><p>比如我们有<code>[20170101-20180101]=dataSourceName1 ; [20180101-20190101]=dataSourceName2 ; [20190101-?]=dataSourceName3</code></p><p>代表着2017年的数据，会存在数据源<code>dataSourceName1</code>中，而2018年的数据，会存在<code>dataSourceName2</code>中，2019年后的数据，会存在<code>dataSourceName3</code>中。
+问号代表着未来的所有时间。当然如果到了2010年，需要再增加一个数据库的时候，我们又可以再增加一个时间段的分片，就可以满足扩容了，比如改成
+<code>[20170101-20180101]=dataSourceName1 ; [20180101-20190101]=dataSourceName2 ; [20190101-20200101]=dataSourceName3 ; [20200101-?]=dataSourceName4</code></p><h2 id="分片表的创建"><a href="#分片表的创建" aria-hidden="true" class="header-anchor">#</a> 分片表的创建</h2><blockquote><p>分片表，就是一个物理表的名称，它是真实的存放在mysql实例中的表</p></blockquote><div class="tip custom-block"><p class="custom-block-title">提示</p><p>分片表需要手工创建，我们可以一次性创建未来几个月可用的分片表。但是创建的时间，需要按照配置的range，创建在不同的数据库中。每个分片表的表结构必须一致。</p></div><p>那么bigsql的逻辑表，是如何与分片表对应起来的呢？假设我们的逻辑表名为<code>person</code></p><h3 id="按年分表"><a href="#按年分表" aria-hidden="true" class="header-anchor">#</a> 按年分表</h3><table><thead><tr><th>时间</th><th>分片表名</th></tr></thead><tbody><tr><td>2016年</td><td>person_2016</td></tr><tr><td>2017年</td><td>person_2017</td></tr><tr><td>2018年</td><td>person_2018</td></tr></tbody></table><h3 id="按月分表"><a href="#按月分表" aria-hidden="true" class="header-anchor">#</a> 按月分表</h3><table><thead><tr><th>时间</th><th>分片表名</th></tr></thead><tbody><tr><td>2016年1月</td><td>person_201601</td></tr><tr><td>2016年11月</td><td>person_201611</td></tr><tr><td>2018年5月</td><td>person_201805</td></tr></tbody></table><h3 id="按天分表"><a href="#按天分表" aria-hidden="true" class="header-anchor">#</a> 按天分表</h3><table><thead><tr><th>时间</th><th>分片表名</th></tr></thead><tbody><tr><td>2016年1月1日</td><td>person_20160101</td></tr><tr><td>2016年10月11日</td><td>person_20161011</td></tr><tr><td>2018年9月11日</td><td>person_20160911</td></tr></tbody></table></div><!----><div class="content page-nav"><p class="inner"><span class="prev">
+        ← <a href="/guide/hash_sharding.html" class="prev">
+          哈希切片
+        </a></span><span class="next"><a href="/guide/master_slave.html">
+          读写分离
+        </a> →
+      </span></p></div></div></div></div>
+    <script src="/assets/js/3.d5999058.js" defer></script><script src="/assets/js/app.84167483.js" defer></script>
+  </body>
+</html>

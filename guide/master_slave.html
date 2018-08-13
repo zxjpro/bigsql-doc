@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Bigsql中文文档 | 读写分离</title>
+    <meta name="description" content="一个和语言无关的分布式数据库中间件">
+    
+    
+    <link rel="preload" href="/assets/css/23.styles.5037532c.css" as="style"><link rel="preload" href="/assets/js/app.84167483.js" as="script"><link rel="preload" href="/assets/js/8.92d81fef.js" as="script"><link rel="prefetch" href="/assets/js/12.7801bbb2.js"><link rel="prefetch" href="/assets/js/1.98126f60.js"><link rel="prefetch" href="/assets/js/2.d5fa26c4.js"><link rel="prefetch" href="/assets/js/3.d5999058.js"><link rel="prefetch" href="/assets/js/4.98d27f86.js"><link rel="prefetch" href="/assets/js/5.ea5dab47.js"><link rel="prefetch" href="/assets/js/6.489c1038.js"><link rel="prefetch" href="/assets/js/7.82b268c7.js"><link rel="prefetch" href="/assets/js/9.d9d36508.js"><link rel="prefetch" href="/assets/js/10.faecb4db.js"><link rel="prefetch" href="/assets/js/11.20f0e3a1.js"><link rel="prefetch" href="/assets/js/0.53bbfd97.js"><link rel="prefetch" href="/assets/js/13.37c1602e.js"><link rel="prefetch" href="/assets/js/14.d41133a1.js"><link rel="prefetch" href="/assets/js/15.9502ddac.js"><link rel="prefetch" href="/assets/js/16.36c7316e.js"><link rel="prefetch" href="/assets/js/17.0a1ffff9.js"><link rel="prefetch" href="/assets/js/18.b6ac11d0.js"><link rel="prefetch" href="/assets/js/19.f049c57d.js"><link rel="prefetch" href="/assets/js/20.e9671a69.js"><link rel="prefetch" href="/assets/js/21.850692c3.js"><link rel="prefetch" href="/assets/js/22.f9b89311.js">
+    <link rel="stylesheet" href="/assets/css/23.styles.5037532c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/" class="home-link router-link-active"><!----><span class="site-name">
+      Bigsql中文文档
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">主页</a></div><div class="nav-item"><a href="/guide/" class="nav-link router-link-active">使用文档</a></div><div class="nav-item"><a href="/dev/" class="nav-link">开发文档</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Languages</span><span class="arrow right"></span></a><ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----><a href="/Languages/chinese.html" class="nav-link">中文</a></li><li class="dropdown-item"><!----><a href="/Languages/english.html" class="nav-link">englih</a></li></ul></div></div><a href="http://www.baidu.com" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Source
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">主页</a></div><div class="nav-item"><a href="/guide/" class="nav-link router-link-active">使用文档</a></div><div class="nav-item"><a href="/dev/" class="nav-link">开发文档</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Languages</span><span class="arrow right"></span></a><ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----><a href="/Languages/chinese.html" class="nav-link">中文</a></li><li class="dropdown-item"><!----><a href="/Languages/english.html" class="nav-link">englih</a></li></ul></div></div><a href="http://www.baidu.com" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Source
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav><ul class="sidebar-links"><li><a href="/guide/" class="sidebar-link">文档</a></li><li><a href="/guide/noun_introduce.html" class="sidebar-link">名词介绍</a></li><li><a href="/guide/tips.html" class="sidebar-link">小提示</a></li><li><a href="/guide/config_datasource.html" class="sidebar-link">数据源配置</a></li><li><a href="/guide/create_logic_database.html" class="sidebar-link">建立逻辑数据库</a></li><li><a href="/guide/create_logic_table.html" class="sidebar-link">建立逻辑表</a></li><li><a href="/guide/hash_sharding.html" class="sidebar-link">哈希切片</a></li><li><a href="/guide/time_sharding.html" class="sidebar-link">时间分片</a></li><li><a href="/guide/master_slave.html" class="active sidebar-link">读写分离</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/master_slave.html#强制读主库" class="sidebar-link">强制读主库</a></li><li class="sidebar-sub-header"><a href="/guide/master_slave.html#配置读写分离" class="sidebar-link">配置读写分离</a></li><li class="sidebar-sub-header"><a href="/guide/master_slave.html#配置读写分离-2" class="sidebar-link">配置读写分离</a></li></ul></li><li><a href="/guide/full_scan_table.html" class="sidebar-link">引发全表扫描</a></li><li><a href="/guide/transaction.html" class="sidebar-link">事务</a></li><li><a href="/guide/increment_key.html" class="sidebar-link">分布式主键</a></li><li><a href="/guide/plugin.html" class="sidebar-link">插件</a></li><li><a href="/guide/keyword.html" class="sidebar-link">关键字</a></li></ul></div><div class="page"><div class="content"><h1 id="读写分离"><a href="#读写分离" aria-hidden="true" class="header-anchor">#</a> 读写分离</h1><p>读写分离是将操作的sql分为查询操作与写操作，写操作(包括修改与删除)会操作主库，而查询操作则查询从库，从而提升数据库的效率，
+另一方面，因为使用了读写分离，所以数据库锁记录的情况可以减少非常多，从而优化数据库性能及速度。</p><div class="tip custom-block"><p class="custom-block-title">提示</p><p>bigsql并不会实现主从复制，这一部分需要配置mysql的二进制日志自行实现，bigsql只是作为读写分离的应用场景</p></div><div class="tip custom-block"><p class="custom-block-title">提示</p><p>bigsql中的读写分离是以数据库为单位的，也就是说bigsql中的逻辑库和物理库是一一对应的，但是数据库名可以不一样。
+不支持配置单个表作为读写分离操作</p></div><h2 id="强制读主库"><a href="#强制读主库" aria-hidden="true" class="header-anchor">#</a> 强制读主库</h2><p>在任何应用产品的主从复制中，数据从主库同步到从库时，都是需要时间的，哪怕是毫秒级别的同步，这个一般会受制于当前的网络环境。如果在插入一条数据后，立即去查询这条数据，
+因为插入的是主库，而查询的是从库，在查询的时候，有可能数据还没有同步到从库。</p><p>所以bigsql提供了一种强行读取主库的操作，也就是把一条查询语句，不读从库，强制读主库，避免这样的查询会查找不到数据的情况。
+代码示例如下:</p><div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">SELECT</span> MASTER <span class="token operator">*</span> <span class="token keyword">FROM</span> table_name
+</code></pre></div><p>我们可以看到不同的地方是这条语句多了一个<code>MASTER</code>关键字，当bigsql检测到这个关键字时，就会把这条语句强行在主库执行，关键字不区分大小写。</p><h2 id="配置读写分离"><a href="#配置读写分离" aria-hidden="true" class="header-anchor">#</a> 配置读写分离</h2><h3 id="配置数据源"><a href="#配置数据源" aria-hidden="true" class="header-anchor">#</a> 配置数据源</h3><p>我们需要在bigsql的数据源目录建立相应的数据源，分别是主库的数据源和从库的数据源。<a href="/guide/config_datasource.html">查看建立方式</a></p><h2 id="配置读写分离-2"><a href="#配置读写分离-2" aria-hidden="true" class="header-anchor">#</a> 配置读写分离</h2><p>我们<a href="/guide/create_logic_database.html">建立一个逻辑库</a>，并且不添加任何表配置。前面也提到读写分离的逻辑库与物理库是一一对应的，所以我们新建的这个逻辑库只能是读写分离库，而<strong>不能添加逻辑表配置</strong>。</p><p>然后在逻辑库目录建立一个<code>default.xml</code>文件，文件配置如下:</p><div class="language-xml extra-class"><pre class="language-xml"><code><span class="token comment">&lt;!-- 开头就是一个default标签，但是有一个type属性，标志这是配置一个主从库 --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>default</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>masterSlave<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+
+
+    <span class="token comment">&lt;!-- 对当前数据库应用的策略，这是一个全类名 --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strategy</span><span class="token punctuation">&gt;</span></span>SimpleMasterSlaveStrategy<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strategy</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token comment">&lt;!-- 此标签代表主从配置 --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>masterSlave</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!-- 这里配置的是属性列表 --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">&gt;</span></span>
+
+            <span class="token comment">&lt;!-- 主库的配置 --&gt;</span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">&gt;</span></span>master<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>key</span><span class="token punctuation">&gt;</span></span>
+                <span class="token comment">&lt;!-- 主库的数据源名称 --&gt;</span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">&gt;</span></span>idc49<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">&gt;</span></span>
+
+            <span class="token comment">&lt;!-- 从库的配置 --&gt;</span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">&gt;</span></span>slave<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>key</span><span class="token punctuation">&gt;</span></span>
+                <span class="token comment">&lt;!-- 从库的数据源名称 --&gt;</span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">&gt;</span></span>idc44<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">&gt;</span></span>
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>properties</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>masterSlave</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>default</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>如上就配置完成了，重新加载bigsql即可。</p></div><!----><div class="content page-nav"><p class="inner"><span class="prev">
+        ← <a href="/guide/time_sharding.html" class="prev">
+          时间分片
+        </a></span><span class="next"><a href="/guide/full_scan_table.html">
+          引发全表扫描
+        </a> →
+      </span></p></div></div></div></div>
+    <script src="/assets/js/8.92d81fef.js" defer></script><script src="/assets/js/app.84167483.js" defer></script>
+  </body>
+</html>
